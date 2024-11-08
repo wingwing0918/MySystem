@@ -1,0 +1,140 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  body {
+    background-color: #f1f1f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .login-container {
+    display: flex;
+    width: 80%;
+    max-width: 1200px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .login-left {
+    flex: 1;
+    background-color: rgb(252, 197, 96); 
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+  }
+  
+  input[type="text"]:focus,
+  input[type="password"]:focus {
+    border-color: #6c63ff;
+    outline: none;
+  }
+  
+  button {
+    padding: 15px;
+    background-color: #6c63ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #5a54e7;
+  }
+  
+  button:active {
+    background-color: #4d47cb;
+  }
+  
+  .links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .links a {
+    color: #6c63ff;
+    font-size: 14px;
+    text-decoration: none;
+    margin: 5px 0;
+    transition: color 0.3s ease;
+  }
+  
+  .links a:hover {
+    color: #4d47cb;
+  }
+  
+  .login-right {
+    flex: 1;
+    background-color: linear-gradient(orange, white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+  }
+  
+  .login-right img {
+    max-width: 80%;
+    height: auto;
+    object-fit: contain;
+  }
+  
+  /* Responsiveness */
+  @media screen and (max-width: 768px) {
+    .login-container {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .login-left {
+      padding: 20px;
+    }
+  
+    .login-right {
+      width: 100%;
+      padding: 20px;
+    }
+  
+    .login-right img {
+      max-width: 60%;
+    }
+  }
+  
+  

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HOA Management System - Login</title>
+  <link rel="stylesheet" href="ResidentLogIn.css">
+</head>
+<body>
+
+  <div class="login-container">
+    <div class="login-left">
+      <h2>Log In of HOA Mangement Systems for Residents</h2>
+      <form action="loginResident.php" method="post" id="loginForm">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Enter username" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter password" required>
+
+        <button type="submit">Log In</button>
+
+        <div class="links">
+          <a href="BODLogin.html">Switch to BoD Log-In</a>
+          <a href="createaccountwithphp.html">Create an Account</a>
+          <a href="forgot pass.html">Forgot Password?</a>
+        </div>
+      </form>
+    </div>
+
+    <div class="login-right">
+      <img src="NewLogo.png" alt="HOA Logo">
+    </div>
+  </div>
+
+</body>
+</html>
