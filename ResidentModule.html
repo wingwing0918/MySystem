@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOA Management System</title>
+    <link rel="stylesheet" href="ResidentModule.css">
+</head>
+<body class="katawan">
+    <header>
+        <div class="logo">
+            <img src="VLSHOA.png" alt="HOAMS Logo"> <!-- Replace with your logo source -->
+            <img src="NewLogo.png" alt="hoams">
+        </div>
+    <div class="hamburger-menu" onclick="toggleSidebar()">
+        &#9776; <!-- Three-bar icon -->
+    </div>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showSection('hoams')">Dashboard</a></li>
+                <li><a href="#" onclick="showSection('events')">Events</a></li>
+                <li><a href="#" onclick="showSection('funds')">Payments</a></li>
+                <li><a href="#" onclick="showSection('bod')">BoD Directories</a></li>
+                <li><a href="#" onclick="showSection('election')">Election/Voting</a></li>
+                <li><a href="#" onclick="showSection('support')">Support</a></li>
+                <li><a href="#" onclick="showSection('notification')">Notification</a></li>
+                <li><a href="#" onclick="showSection('about')">About</a></li>
+                <li><a href="loginResident.html" id="logout-btn" class="logout-btn">Log Out</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="hamburger-menu" onclick="toggleSidebar()">☰</div>
+
+<div id="profileSidebar" class="sidebar">
+    <div class="profile-container">
+        <div class="profile-image">
+            <img id="profilePic" src="default-profile.png" alt="Profile Picture">
+        </div>
+        <h3 id="residentName">Name</h3>
+        <p id="residentLotNumber">Lot Number: </p>
+        <p id="residentEmail">Email: </p>
+        <button onclick="closeSidebar()">Close</button>
+    </div>
+</div>
+
+
+
+    <div><img src="baras.png" alt="baras" class="genCon"></div>
+
+    <!-- Only the 'hoams' section is active by default -->
+    <section id="hoams" class="content-section active">
+        <div class="genCon">
+            <h2 class="res"><center>Dashboard</center><h2>
+            <p>Content of Dashboard</p>
+        </div>
+    </section>
+
+    <section id="events" class="content-section">
+       <div class="genCon">
+            <h2 class="res"><center>Events</center></h2>
+            <p>Content of Events</p>
+            <div id="imageDisplayContainer" ></div>
+        </div>
+    </section>
+    
+    <!-- Resident Payment Section Container -->
+<section id="funds" class="content-section">
+  <div class="genCon">
+      <h2 class="res"><center>Payments</center></h2>
+
+      <!-- Payment Method Selection -->
+      <div class="payment-container">
+          <!-- Walk-in Payment Section -->
+          <div class="payment-section" id="walkin-section">
+              <h3>Walk-in Payment</h3>
+              <label for="appointment-date">Select Date:</label>
+              <input type="date" id="appointment-date" required>
+              <label for="appointment-time">Select Time:</label>
+              <input type="time" id="appointment-time" required>
+              <button class="btn" onclick="submitWalkIn()">Set Appointment</button>
+          </div>
+
+          <!-- Online Payment Section -->
+          <div class="payment-section" id="online-section">
+              <h3>Online Payment</h3>
+              <img src="sampleqr.jpg" alt="QR Code" class="qr-code">
+              <form id="online-payment-form" onsubmit="submitOnlinePayment(event)">
+                  <label for="gcash-name">G-Cash Name:</label>
+                  <input type="text" id="gcash-name" required>
+                  <label for="lot-number">Lot Number:</label>
+                  <input type="text" id="lot-number" required>
+                  <label for="payment-date">Date:</label>
+                  <input type="date" id="payment-date" required>
+                  <label for="amount">Amount:</label>
+                  <input type="number" id="amount" required>
+                  <label for="proof-of-payment">Proof of Payment:</label>
+                  <input type="file" id="proof-of-payment" required>
+                  <button type="submit" class="btn">Submit</button>
+              </form>
+          </div>
+      </div>
+
+      <!-- Transaction History Section -->
+      <div class="ledger-section">
+          <h3>Transaction History</h3>
+          <table id="transaction-ledger">
+              <thead>
+                  <tr>
+                      <th>Date</th>
+                      <th>Transaction Type</th>
+                      <th>Lot Number</th>
+                      <th>Name</th>
+                      <th>Amount</th>
+                  </tr>
+              </thead>
+              <tbody id="ledger-body">
+                  <!-- Transactions will load here -->
+              </tbody>
+          </table>
+      </div>
+  </div>
+</section>
+  
+
+    <section id="bod" class="content-section">
+        <div class="genCon">
+          <h2 class="res"><center>BoD Directories</center></h2>
+        
+          <div class="bod-grid">
+            <!-- Example for each BoD member -->
+            <div class="bod-card">
+              <div class="bod-image">
+                <img src="president.jpg" alt="President">
+                <div class="bod-contact">
+                  <p>Email: president@example.com</p>
+                  <p>Contact: +123456789</p>
+                </div>
+              </div>
+              <h3>President</h3>
+              <p>John Doe</p>
+            </div>
+
+            <div class="bod-card">
+              <div class="bod-image">
+                <img src="vp.jpg" alt="Vice President">
+                <div class="bod-contact">
+                  <p>Email: vp@example.com</p>
+                  <p>Contact: +123456789</p>
+                </div>
+              </div>
+              <h3>Vice President</h3>
+              <p>Jane Smith</p>
+            </div>
+      
+            <!-- Repeat similar structure for other roles -->
+            <div class="bod-card">
+              <div class="bod-image">
+                <img src="secretary.jpg" alt="Secretary">
+                <div class="bod-contact">
+                  <p>Email: secretary@example.com</p>
+                  <p>Contact: +123456789</p>
+                </div>
+              </div>
+              <h3>Secretary</h3>
+              <p>Alex Johnson</p>
+            </div>
+      
+            <div class="bod-card">
+              <div class="bod-image">
+                <img src="treasurer.jpg" alt="Treasurer">
+                <div class="bod-contact">
+                  <p>Email: treasurer@example.com</p>
+                  <p>Contact: +123456789</p>
+                </div>
+              </div>
+              <h3>Treasurer</h3>
+              <p>Emily Brown</p>
+            </div>
+
+            <div class="bod-card">
+                <div class="bod-image">
+                  <img src="treasurer.jpg" alt="P.R.O">
+                  <div class="bod-contact">
+                    <p>Email: treasurer@example.com</p>
+                    <p>Contact: +123456789</p>
+                  </div>
+                </div>
+                <h3>Treasurer</h3>
+                <p>Emily Brown</p>
+              </div>
+
+              <div class="bod-card">
+                <div class="bod-image">
+                  <img src="treasurer.jpg" alt="Board Member 1">
+                  <div class="bod-contact">
+                    <p>Email: treasurer@example.com</p>
+                    <p>Contact: +123456789</p>
+                  </div>
+                </div>
+                <h3>Treasurer</h3>
+                <p>Emily Brown</p>
+              </div>
+              <div class="bod-card">
+                <div class="bod-image">
+                  <img src="treasurer.jpg" alt="Board Member 2">
+                  <div class="bod-contact">
+                    <p>Email: treasurer@example.com</p>
+                    <p>Contact: +123456789</p>
+                  </div>
+                </div>
+                <h3>Treasurer</h3>
+                <p>Emily Brown</p>
+              </div>
+              <div class="bod-card">
+                <div class="bod-image">
+                  <img src="treasurer.jpg" alt="Board Member 3">
+                  <div class="bod-contact">
+                    <p>Email: treasurer@example.com</p>
+                    <p>Contact: +123456789</p>
+                  </div>
+                </div>
+                <h3>Treasurer</h3>
+                <p>Emily Brown</p>
+              </div>
+
+              <div class="bod-card">
+                <div class="bod-image">
+                  <img src="treasurer.jpg" alt="Committee Chairperson">
+                  <div class="bod-contact">
+                    <p>Email: treasurer@example.com</p>
+                    <p>Contact: +123456789</p>
+                  </div>
+                </div>
+                <h3>Treasurer</h3>
+                <p>Emily Brown</p>
+              </div>
+
+              <div class="bod-card">
+                <div class="bod-image">
+                  <img src="treasurer.jpg" alt="Greivance Committee Chairperson">
+                  <div class="bod-contact">
+                    <p>Email: treasurer@example.com</p>
+                    <p>Contact: +123456789</p>
+                  </div>
+                </div>
+                <h3>Treasurer</h3>
+                <p>Emily Brown</p>
+              </div>
+      
+              <div class="bod-card">
+                <div class="bod-image">
+                  <img src="treasurer.jpg" alt="Audit Committee Chairperson">
+                  <div class="bod-contact">
+                    <p>Email: treasurer@example.com</p>
+                    <p>Contact: +123456789</p>
+                  </div>
+                </div>
+                <h3>Treasurer</h3>
+                <p>Emily Brown</p>
+              </div>
+      
+      
+            <!-- Add cards for P.R.O, Board Members, Committee Chairpersons, etc. -->
+          </div>
+        </div>
+      </section>
+
+    <section id="election" class="content-section">
+        <div class="genCon">
+            <h2 class="res"><center>Election</center></h2>
+            <p>Content of Election/Voting</p>
+            <button onclick="showSection('voteTime')" class="concernSub">Start Voting</button>
+        </div>
+    </section>
+    <section id="voteTime" class="content-section">
+        <div class="genCon"><center>Vote Wisely <3 </center>
+            <div class="container">
+                <h1>Election Voting Form</h1>
+                <center>
+                  <form id="votingForm">
+                    <div class="form-group">
+                        <label for="president">President:</label>
+                        <select id="president" name="president">
+                            <option value="Candidate A">Candidate A</option>
+                            <option value="Candidate B">Candidate B</option>
+                            <option value="Candidate C">Candidate C</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="vp">Vice President:</label>
+                        <select id="vp" name="vp">
+                            <option value="Candidate A">Candidate A</option>
+                            <option value="Candidate B">Candidate B</option>
+                            <option value="Candidate C">Candidate C</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="secretary">Secretary:</label>
+                        <select id="secretary" name="secretary">
+                            <option value="Candidate A">Candidate A</option>
+                            <option value="Candidate B">Candidate B</option>
+                            <option value="Candidate C">Candidate C</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="treasurer">Treasurer:</label>
+                        <select id="treasurer" name="treasurer">
+                            <option value="Candidate A">Candidate A</option>
+                            <option value="Candidate B">Candidate B</option>
+                            <option value="Candidate C">Candidate C</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="pro">P.R.O:</label>
+                        <select id="pro" name="pro">
+                            <option value="Candidate A">Candidate A</option>
+                            <option value="Candidate B">Candidate B</option>
+                            <option value="Candidate C">Candidate C</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="board1">Board Member 1:</label>
+                        <select id="board1" name="board1">
+                            <option value="Candidate A">Candidate A</option>
+                            <option value="Candidate B">Candidate B</option>
+                            <option value="Candidate C">Candidate C</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="board2">Board Member 2:</label>
+                        <select id="board2" name="board2">
+                            <option value="Candidate A">Candidate A</option>
+                            <option value="Candidate B">Candidate B</option>
+                            <option value="Candidate C">Candidate C</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="board3">Board Member 3:</label>
+                        <select id="board3" name="board3">
+                            <option value="Candidate A">Candidate A</option>
+                            <option value="Candidate B">Candidate B</option>
+                            <option value="Candidate C">Candidate C</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="committee">Committee Chairperson:</label>
+                        <select id="committee" name="committee">
+                            <option value="Candidate A">Candidate A</option>
+                            <option value="Candidate B">Candidate B</option>
+                            <option value="Candidate C">Candidate C</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="grievance">Grievance Committee Chairperson:</label>
+                        <select id="grievance" name="grievance">
+                            <option value="Candidate A">Candidate A</option>
+                            <option value="Candidate B">Candidate B</option>
+                            <option value="Candidate C">Candidate C</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="audit">Audit Committee Chairperson:</label>
+                        <select id="audit" name="audit">
+                            <option value="Candidate A">Candidate A</option>
+                            <option value="Candidate B">Candidate B</option>
+                            <option value="Candidate C">Candidate C</option>
+                        </select>
+                    </div>
+            
+                    <button type="button" onclick="submitVote()">Submit Vote</button>
+                    </form>
+                    <div class="message" id="thankYouMessage">Thanks for voting!</div>
+        </div>
+        
+    </section>
+
+    <section id="support" class="content-section">
+        <div class="genCon">
+            <h2 class="res"><center>Support</center></h2><br>
+            <div id="replies"></div>
+
+<!-- Floating interface for submitting concerns -->
+<div id="concernInterface">
+    <h3>Enter Your Concern</h3>
+    <textarea id="concernText" placeholder="Enter your concern"></textarea><br><br>
+    <button onclick="submitConcern()">Submit</button>
+    <button onclick="closeConcernBox()">Close</button>
+</div>
+<!-- Overlay to be shown when floating interfaces are open -->
+<div class="overlay" id="overlay"></div></div>
+           <!-- Button to open the concern interface -->
+           <button onclick="openConcernBox()" class="concernSub">Submit Concern</button>
+    </section>
+
+
+    <section id="notification" class="content-section">
+        <div class="genCon">
+            <h2 class="res"><center>Notification</center></h2>
+        </div>
+    </section>
+
+    <section id="about" class="content-section">
+        <div class="genCon">
+            <h2 class="res"><center>About HOAMS</center></h2>
+            <div class="faq"><strong>FAQ’s</strong> <br><hr>
+                <br><strong>Q:</strong> What is Homeowners Association
+                <br><strong>A:</strong> It is an association who are a resident and own a property here in Villa Luisa, this system will provide you knowledge about the happenings in our subdivision
+                <br><hr>
+                <br><strong>Q:</strong> How can I contact the president?
+                <br><strong>A:</strong> Go to the board of director section click the person you want to contact after you click their profile you will see their contact info.
+                <br><hr>
+                <br><strong>Q:</strong> What will I do if I forgot my password?
+                <br><strong>A:</strong> In the log-in page you will notice “forgot password” click and it will take you to the pasword reset page it will require you to enter a 6 digit code, you ca request the code and it will be send via sms after that you can now change to a new password.
+            <br><hr></div>
+        </div>
+    </section>
+
+    <script src="ResidentModule.js"></script>
+</body>
+</html>
